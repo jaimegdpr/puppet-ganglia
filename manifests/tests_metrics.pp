@@ -1,4 +1,9 @@
 class ganglia::tests_metrics (
+
+    # Lookup function uses Hiera to retrieve a value for a given key
+    # Arguments => lookup( <NAME>, <VALUE TYPE>, <MERGE BEHAVIOR>, <DEFAULT VALUE> )
+    # MERGE BEHAVIOR = 'first' is similar to use the hiera() function
+
     $enable_metric_disk_usage = lookup('ganglia::enable_metric_disk_usage', Boolean, first, false),
     $enable_metric_commit_memory = lookup('ganglia::enable_metric_commit_memory', Boolean, first, false),
     $enable_metric_dcap_workers = lookup('ganglia::enable_metric_dcap_workers', Boolean, first, false),
@@ -6,6 +11,8 @@ class ganglia::tests_metrics (
     ) {
 
     require ciemat_tweaks::folders
+
+    # If the variable exists (True), get the corresponding tests files
 
     if $enable_metric_disk_usage {
         file {'/root/gmetric/disk_usage.pl':

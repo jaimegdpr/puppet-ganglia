@@ -1,5 +1,6 @@
 class ganglia::install {
 
+      # RPM filename
       $ganglia_package = 'ganglia-gmond-3.0.6-1.x86_64.rpm'
 
       file {"/root/packages/${ganglia_package}":

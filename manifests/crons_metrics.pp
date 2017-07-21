@@ -10,6 +10,8 @@ class ganglia::crons_metrics (
     $enable_metric_load_per_jobs = lookup('ganglia::enable_metric_load_per_jobs', Boolean, first, false),
 ){
 
+# If the variable exists (True), set the corresponding cron job
+
     if $enable_metric_disk_usage {
         cron::job { 'gmetric_cron':
                 minute      => '*',
