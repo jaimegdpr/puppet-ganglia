@@ -1,10 +1,14 @@
 class ganglia {
 
-    class {'ganglia::install':}
-    class {'ganglia::config':}
-    class {'ganglia::service':}
-    class {'ganglia::tests_metrics':}
-    class {'ganglia::crons_metrics':}
+    include ganglia::install
+    include ganglia::config
+    include ganglia::service
+    include ganglia::tests_metrics
+    include ganglia::crons_metrics
+
+    Class['ganglia::install'] ->
+    Class['ganglia::config'] ->
+    Class['ganglia::service']
 
 }
 

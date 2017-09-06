@@ -4,6 +4,5 @@ class ganglia::service {
         ensure => running,
         enable => true,
         hasrestart => true,
-        require => Package['ganglia-gmond'],
     }
 }
